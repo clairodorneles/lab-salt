@@ -5,4 +5,4 @@ walinuxagent:
 
 /etc/waagent.conf:
   file.managed:
-    - source: salt://waagent.conf
+    - source: salt://waagent/waagent.conf

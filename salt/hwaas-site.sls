@@ -12,7 +12,7 @@ git-client-package:
 
 hwaas-source:
   git.latest:
-    - name: https://github.com/floyd-may/hwaas.git
+    - name: https://github.com/clairodorneles/helloworld-As-A-Service.git
     - rev: master
     - target: /home/hwaas/hwaas-site
     - require:

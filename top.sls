@@ -6,7 +6,7 @@ base:
   'roles:hwaas-lb': 
     - match: grain
     - load-balance
-  'roles:hwass-nodes':
+  'roles:hwaas-nodes':
     - match: grain
     - waagent
     - timezone

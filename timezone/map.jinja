@@ -1,0 +1,46 @@
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{#- Start imports as #}
+{%- import_yaml tplroot ~ "/defaults.yaml" as default_settings %}
+{%- import_yaml tplroot ~ "/os_arch_map.yaml" as os_arch_map %}
+{%- import_yaml tplroot ~ "/os_family_map.yaml" as os_family_map %}
+{%- import_yaml tplroot ~ "/os_map.yaml" as os_map %}
+{%- import_yaml tplroot ~ "/os_finger_map.yaml" as os_finger_map %}
+
+{#- Retrieve the config dict only once #}
+{%- set _config = salt['config.get'](tplroot, default={}) %}
+
+{%- set defaults = salt['grains.filter_by'](
+      default_settings,
+      default=tplroot,
+      merge=salt['grains.filter_by'](
+        os_arch_map,
+        grain='osarch',
+        merge=salt['grains.filter_by'](
+          os_family_map,
+          grain='os_family',
+          merge=salt['grains.filter_by'](
+            os_map,
+            grain='os',
+            merge=salt['grains.filter_by'](
+              os_finger_map,
+              grain='osfinger',
+              merge=salt['grains.filter_by'](
+                _config,
+                default='lookup'
+              )
+            )
+          )
+        )
+      )
+    )
+%}
+
+{%- set config = salt['grains.filter_by'](
+      {'defaults': defaults},
+      default='defaults',
+      merge=_config
+    )
+%}
+
+{%- set timezone = config %}

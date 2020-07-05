@@ -4,9 +4,9 @@ base:
 
   'lb':
     - override
-  'roles:hwaas-lb':
+  'role:hwaas-lb':
     - match: grain
     - hwaas-ssl
-  'roles:hwaas-web':
+  'role:hwaas-web':
     - match: grain
     - hwaas-web-mine

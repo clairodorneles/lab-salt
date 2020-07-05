@@ -9,4 +9,3 @@ base:
   'roles:hwaas-node':
     - match: grain
     - waagent
-    - timezone

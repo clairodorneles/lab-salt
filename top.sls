@@ -1,11 +1,11 @@
 base:
-  'roles:hwaas-web':
+  'role:hwaas-web':
     - match: grain
     - nodejs-pkg
     - hwaas-service
-  'roles:hwaas-lb': 
+  'role:hwaas-lb': 
     - match: grain
     - load-balance
-  'roles:hwaas-node':
+  'role:hwaas-node':
     - match: grain
     - waagent
